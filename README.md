@@ -60,6 +60,10 @@ This project was created to demonstrate the use of Inquirer module from Node.js,
 
 ## Link to Demo
 
+[DEMO](https://drive.google.com/file/d/18W7GZzI1siSmc4FXL6Hjdy0FPk7xtl8f/view)
+
+![Gif of Demo](./assets/gif/Squad_machine.gif)
+
 ## Tests
 
 Run 'npm test' to run Jest for tests on constructors.
