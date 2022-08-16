@@ -1,0 +1,25 @@
+h1 {
+    font-family: 'Inspiration', cursive;
+    font-size: 500%;
+}
+
+h2,
+h3,
+li {
+    font-family: 'DynaPuff', cursive;
+}
+
+.jumbotron {
+    border-radius: 0;
+}
+
+.employee-card {
+    box-shadow: 5px 5px 5px gray;
+    margin: 1rem;
+    border: none;
+}
+
+.card-body {
+    background-color: rgb(240, 240, 240);
+}
+
