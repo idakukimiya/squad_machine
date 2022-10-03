@@ -2,19 +2,19 @@ const inquirer = require('inquirer')
 const template = require('./src/template')
 const writeFile = require('./src/write-file')
 
-const { Manager, managerQuestionsArr } = require('./lib/Manager');
-const { Engineer, engineerQuestionsArr } = require('./lib/Engineer');
-const { Intern, internQuestionsArr } = require('./lib/Intern');
+const { Manager, managerQuestions } = require('./lib/Manager');
+const { Engineer, engineerQuestions } = require('./lib/Engineer');
+const { Intern, internQuestions } = require('./lib/Intern');
 
-const employeesArr = []
+const employees = []
 
 const init = () => { managerQuestions() }
 // prompts manager questions then creates object from user inputs based on Manager class 
 const managerQuestions = () => {
-    inquirer.prompt(managerQuestionsArr)
+    inquirer.prompt(managerQuestions)
     .then(( answers ) => {
         answers = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
-        employeesArr.push(answers);
+        employees.push(answers);
         return employeePrompt();
     })
 }
@@ -23,7 +23,7 @@ const engineerQuestions = () => {
     inquirer.prompt(engineerQuestionsArr)
     .then(( answers ) => {
         answers = new Engineer(answers.name, answers.id, answers.email, answers.github)
-        employeesArr.push(answers);
+        employees.push(answers);
         return employeePrompt();
     })
 }
@@ -41,7 +41,7 @@ const employeePrompt = () => {
     inquirer.prompt([{
         type: 'list',
         name: 'employeeType',
-        message: "What kind of team member would you like to add?",
+        message: "Which team member are you adding?",
         choices: [
             {name: 'Engineer', value: "addEngineer"},
             {name: 'Intern', value: "addIntern"},

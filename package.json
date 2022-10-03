@@ -15,9 +15,10 @@
   
   "homepage": "https://github.com/idakukimiya/squad_machine",
   "dependencies": {
-    "inquirer": "8.2.4"
-  },
-  "devDependencies": {
+    "inquirer": "8.2.4",
     "jest": "^24.8.0"
   }
+
+  
+
 }
