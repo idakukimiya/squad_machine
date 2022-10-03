@@ -1,8 +1,12 @@
 {
-  "name": "wordguess",
+  "name": "squad_machine",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
   "scripts": {
     "start": "node index",
     "watch": "nodemon index",
