@@ -4,18 +4,17 @@
   "description": "",
   "main": "index.js",
   "directories": {
-    "lib": "lib",
-    "test": "tests"
+    "lib": "lib"
+
   },
   "scripts": {
-    "start": "node index",
-    "watch": "nodemon index",
     "test": "jest"
   },
   "author": "",
   "license": "ISC",
+  
+  "homepage": "https://github.com/idakukimiya/squad_machine",
   "dependencies": {
-    "chalk": "^2.4.1",
     "inquirer": "8.2.4"
   },
   "devDependencies": {

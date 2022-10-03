@@ -1,141 +1,65 @@
-const inquirer = require('inquirer');
-const fs = require('fs');
-const genTeam = require('../dist/index.html');
-const genCSS = require('../dist/style.css');
-const Manager = require('./lib/Manager');
-const Intern = require('./lib/Intern');
-const Engineer = require('./lib/Engineer');
-const questions = [
-    'Who is your team manager?',
-    'What is his ID?',
-    'What is his email address?',
-    'What is his office number?',
-    'Add an employee:',
-    "What is this intern's name?",
-    "What is this intern's ID?",
-    "What is this intern's email?",
-    "What is this intern's school?",
-    "What is this engineer's name?",
-    "What is this engineer's ID?",
-    "What is this engineer's email?",
-    "What is this engineer's GitHub Username?"
-]
-const teamChoices = ['Intern', 'Engineer', 'Finish Building Team'];
-const team = [];
+const inquirer = require('inquirer')
+const template = require('./src/template')
+const writeFile = require('./src/write-file')
 
-function managerGen() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                message: questions[0],
-                name: 'managerName'
-            },
-            {
-                type: 'input',
-                message: questions[1],
-                name: 'managerID'
-            },
-            {
-                type: 'input',
-                message: questions[2],
-                name: 'managerEmail'
-            },
-            {
-                type: 'input',
-                message: questions[3],
-                name: 'managerOffice'
-            }
-        ])
-        .then((data) => {
-            const managers = new Manager(data.managerName, data.managerID, data.managerEmail, data.managerOffice)
-            team.push(managers);
-            newEmployeeGen();
-        })
+const { Manager, managerQuestionsArr } = require('./lib/Manager');
+const { Engineer, engineerQuestionsArr } = require('./lib/Engineer');
+const { Intern, internQuestionsArr } = require('./lib/Intern');
+
+const employeesArr = []
+
+const init = () => { managerQuestions() }
+// prompts manager questions then creates object from user inputs based on Manager class 
+const managerQuestions = () => {
+    inquirer.prompt(managerQuestionsArr)
+    .then(( answers ) => {
+        answers = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+        employeesArr.push(answers);
+        return employeePrompt();
+    })
 }
 
-function internGen() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                message: questions[5],
-                name: 'internName'
-            },
-            {
-                type: 'input',
-                message: questions[6],
-                name: 'internID'
-            },
-            {
-                type: 'input',
-                message: questions[7],
-                name: 'internEmail'
-            },
-            {
-                type: 'input',
-                message: questions[8],
-                name: 'internSchool'
-            }
-        ])
-        .then((data) => {
-            const interns = new Intern(data.internName, data.internID, data.internEmail, data.internSchool);
-            team.push(interns);
-            newEmployeeGen();
-        })
+const engineerQuestions = () => {
+    inquirer.prompt(engineerQuestionsArr)
+    .then(( answers ) => {
+        answers = new Engineer(answers.name, answers.id, answers.email, answers.github)
+        employeesArr.push(answers);
+        return employeePrompt();
+    })
 }
 
-function engineerGen() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                message: questions[9],
-                name: 'engineerName'
-            },
-            {
-                type: 'input',
-                message: questions[10],
-                name: 'engineerID'
-            },
-            {
-                type: 'input',
-                message: questions[11],
-                name: 'engineerEmail'
-            },
-            {
-                type: 'input',
-                message: questions[12],
-                name: 'engineerGit'
-            }
-        ])
-        .then((data) => {
-            const engineers = new Engineer(data.engineerName, data.engineerID, data.engineerEmail, data.engineerGit);
-            team.push(engineers);
-            newEmployeeGen();
-        })
+const internQuestions = () => {
+    inquirer.prompt(internQuestionsArr)
+    .then(( answers ) => {
+        answers = new Intern(answers.name, answers.id, answers.email, answers.school)
+        employeesArr.push(answers);
+        return employeePrompt();
+    })
 }
 
-function newEmployeeGen() {
-    inquirer
-        .prompt({
-            type: 'list',
-            message: questions[4],
-            choices: teamChoices,
-            name: 'teamChoices'
-        })
-        .then((data) => {
-            if (data.teamChoices === teamChoices[0]) {
-                internGen();
-            } else if (data.teamChoices === teamChoices[1]) {
-                engineerGen();
-            } else {
-                fs.writeFile('index.html', genTeam(team), (error) =>
-                    error ? console.error(error) : console.log('Team Complete!'))
-                fs.writeFile('style.css', genCSS(), (error) =>
-                    error ? console.error(error) : console.log('CSS Attached!'))
-            }
-        })
+const employeePrompt = () => {
+    inquirer.prompt([{
+        type: 'list',
+        name: 'employeeType',
+        message: "What kind of team member would you like to add?",
+        choices: [
+            {name: 'Engineer', value: "addEngineer"},
+            {name: 'Intern', value: "addIntern"},
+            {name: 'DONE', value: "done"}
+        ]
+    }])
+    .then( answer => {
+        // sends correct prompts based on the employee type
+        if (answer.employeeType === 'addEngineer') { engineerQuestions(); };
+        if (answer.employeeType === 'addIntern') { internQuestions(); };
+        if (answer.employeeType === 'done') {
+            // converts users inputs into HTML
+            let html = template(employeesArr)
+            console.log('...');
+            // creates HTML file
+            writeFile(html);
+        }
+    })
 }
 
-managerGen();
+init();
