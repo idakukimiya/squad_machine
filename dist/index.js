@@ -2,9 +2,9 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const genTeam = require('../dist/index.html');
 const genCSS = require('../dist/style.css');
-const Manager = require('./lib/Manager');
-const Intern = require('./lib/Intern');
-const Engineer = require('./lib/Engineer');
+const Manager = require('../lib/Manager');
+const Intern = require('../lib/Intern');
+const Engineer = require('../lib/Engineer');
 const questions = [
     'Who is your team manager?',
     'What is his ID?',
