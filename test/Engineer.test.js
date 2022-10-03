@@ -1,47 +1,28 @@
-const Employee = require("../lib/Employee");
-const Engineer = require("../lib/Engineer.js");
+const Engineer = require('../lib/Engineer');
 
-describe('Engineer Class Init', () => {
-    it('should create an object with a name, id, and email, and github given valid arguments', () => {
-        const engineer = new Engineer('Zen',7,'example@email.net','GenZ');
+describe('Engineer', () => {
+    it("should return the engineer's name, ID, email, and github username", () => {
+        const employeeStr = new Engineer('Freddy', 4, 'freddykwak123@gmail.com', 'fredkk22');
 
-        expect(engineer.name).toEqual('Zen');
-        expect(engineer.id).toEqual(7);
-        expect(engineer.email).toEqual('example@email.net');
-        expect(engineer.github).toEqual('GenZ');
-    })
+        expect(employeeStr.name).toEqual('Freddy');
+        expect(employeeStr.ID).toEqual(4);
+        expect(employeeStr.email).toEqual('freddykwak123@gmail.com');
+        expect(employeeStr.github).toEqual('fredkk22');
+    });
+    
+    describe('getRole', () => {
+        it('should return a string of Engineer', () => {
+            const employeeStr = new Engineer().getRole();
 
-    it('should create an object that is an instance of Employee', () => {
-        const engineer = new Engineer('Zen',7,'example@email.net','GenZ');
+            expect(employeeStr).toEqual('Engineer');
+        });
+    });
 
-        expect(engineer).toBeInstanceOf(Employee);
-    })
+    describe('getGithub', () => {
+        it('should return the github username of the engineer', () => {
+            const employeeStr = new Engineer('Freddy', 4, 'freddykwak123@gmail.com', 'fredkk22');
 
-    it('should throw an error if provided a github that is not a string',  () => {
-        const engineer = () => new Engineer('Zen',7,'example@email.net',0);
-
-        expect(engineer).toThrow();
-    })
-
-    it('should throw an error if provided no github',  () => {
-        const engineer = () => new Engineer('Zen',7,'example@email.net');
-
-        expect(engineer).toThrow();
-    })
-})
-
-describe('getRole Method', () => {
-    it("should return 'Engineer' when called",  () => {
-        const engineer = new Engineer('Zen',7,'example@email.net','GenZ');
-
-        expect(engineer.getRole()).toEqual('Engineer');
-    })
-})
-
-describe('getGithub Method', () => {
-    it("should return the value of github when called",  () => {
-        const engineer = new Engineer('Mike',7,'example@email.net','mikez');
-
-        expect(engineer.getGithub()).toEqual('mikez');
-    })
-})
+            expect(employeeStr.getGithub()).toEqual('fredkk22');
+        });
+    });
+});

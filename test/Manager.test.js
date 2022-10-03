@@ -1,47 +1,28 @@
-const Employee = require("../lib/Employee");
-const Manager = require("../lib/Manager");
+const Manager = require('../lib/Manager');
 
-describe('Manager Class Init', () => {
-    it('should create an object with a name, id, and email, and officeNumber given valid arguments', () => {
-        const manager = new Manager('Yoshi',3,'example@email.gov',6);
+describe('Manager', () => {
+    it("should return the manager's name, ID, email, and office number", () => {
+        const employeeStr = new Manager('Yoshi', 4, 'Dino_Yoshi@gmail.com', 5);
 
-        expect(manager.name).toEqual('Yoshi');
-        expect(manager.id).toEqual(3);
-        expect(manager.email).toEqual('example@email.gov');
-        expect(manager.officeNumber).toEqual(6);
-    })
+        expect(employeeStr.name).toEqual('Yoshi');
+        expect(employeeStr.ID).toEqual(4);
+        expect(employeeStr.email).toEqual('Dino_Yoshi@gmail.com');
+        expect(employeeStr.officeNumber).toEqual(5);
+    });
+    
+    describe('getRole', () => {
+        it('should return a string of Manager', () => {
+            const employeeStr = new Manager().getRole();
 
-    it('should create an object that is an instance of Employee', () => {
-        const manager = new Manager('Yoshi',3,'example@email.gov',6);
+            expect(employeeStr).toEqual('Manager');
+        });
+    });
 
-        expect(manager).toBeInstanceOf(Employee);
-    })
+    describe('getOfficeNumber', () => {
+        it("should return the Manager's office number", () => {
+            const employeeStr = new Manager('Yoshi', 4, 'Dino_Yoshi@gmail.com', 5);
 
-    it('should throw an error if provided no officeNum',  () => {
-        const manager = () => new Manager('Yoshi',3,'example@email.gov');
-
-        expect(manager).toThrow();
-    })
-
-    it('should throw an error if provided an officeNum that is not a number',  () => {
-        const manager = () => new Manager('Yoshi',3,'example@email.gov','0');
-
-        expect(manager).toThrow();
-    })
-})
-
-describe('getRole Method', () => {
-    it("should return 'Manager' when called",  () => {
-        const manager = new Manager('Yoshi',3,'example@email.gov',6);
-
-        expect(manager.getRole()).toEqual('Manager');
-    })
-})
-
-describe('getOffice Method', () => {
-    it("should return the office number when called",  () => {
-        const manager = new Manager('Yoshi',3,'example@email.gov',6);
-
-        expect(manager.getOffice()).toEqual(6);
-    })
-})
+            expect(employeeStr.getOfficeNumber()).toEqual(5);
+        });
+    });
+});

@@ -1,47 +1,28 @@
-const Employee = require("../lib/Employee");
-const Intern = require("../lib/Intern.js");
+const Intern = require('../lib/Intern');
 
-describe('Intern Class Init', () => {
-    it('should create an object with a name, id, and email, and school given valid arguments', () => {
-        const intern = new Intern('Rain',5,'example@email.edu','Penn University');
+describe('Intern', () => {
+    it("should return the intern's name, ID, email, and school", () => {
+        const employeeStr = new Intern('Rain', 4, 'Rain_Walnut@gmail.com', 'UPenn');
 
-        expect(intern.name).toEqual('Rain');
-        expect(intern.id).toEqual(5);
-        expect(intern.email).toEqual('example@email.edu');
-        expect(intern.school).toEqual('Penn University');
-    })
+        expect(employeeStr.name).toEqual('Rain');
+        expect(employeeStr.ID).toEqual(4);
+        expect(employeeStr.email).toEqual('Rain_Walnut@gmail.com');
+        expect(employeeStr.school).toEqual('UPenn');
+    });
+    
+    describe('getRole', () => {
+        it('should return a string of Intern', () => {
+            const employeeStr = new Intern().getRole();
 
-    it('should create an object that is an instance of Employee', () => {
-        const intern = new Intern('Rain',5,'example@email.edu','Penn University');
+            expect(employeeStr).toEqual('Intern');
+        });
+    });
 
-        expect(intern).toBeInstanceOf(Employee);
-    })
+    describe('getSchool', () => {
+        it("should return the intern's school", () => {
+            const employeeStr = new Intern('Rain', 4, 'Rain_Walnut@gmail.com', 'UPenn');
 
-    it('should throw an error if provided a school that is not a string',  () => {
-        const intern = () => new Intern('Rain',5,'example@email.edu',0);
-
-        expect(intern).toThrow();
-    })
-
-    it('should throw an error if provided no school',  () => {
-        const intern = () => new Intern('Randy',5,'example@email.edu',);
-
-        expect(intern).toThrow();
-    })
-})
-
-describe('getRole Method', () => {
-    it("should return 'Intern' when called",  () => {
-        const intern = new Intern('Rain',5,'example@email.edu','Penn University');
-
-        expect(intern.getRole()).toEqual('Intern');
-    })
-})
-
-describe('getSchool Method', () => {
-    it("should return the value of school when called",  () => {
-        const intern = new Intern('Rain',5,'example@email.edu','Penn University');
-
-        expect(intern.getSchool()).toEqual('Penn University');
-    })
-})
+            expect(employeeStr.getSchool()).toEqual('UPenn');
+        });
+    });
+});
