@@ -2,13 +2,12 @@ const inquirer = require('inquirer')
 const template = require('./src/template')
 const writeFile = require('./src/write-file')
 
-const { Manager, managerQuestions } = require('./lib/Manager');
-const { Engineer, engineerQuestions } = require('./lib/Engineer');
-const { Intern, internQuestions } = require('./lib/Intern');
+// const { Manager, managerQuestions } = require('./lib/Manager');
+// const { Engineer, engineerQuestions } = require('./lib/Engineer');
+// const { Intern, internQuestions } = require('./lib/Intern');
 
 const employees = []
 
-const init = () => { managerQuestions() }
 // prompts manager questions then creates object from user inputs based on Manager class 
 const managerQuestions = () => {
     inquirer.prompt(managerQuestions)
@@ -62,4 +61,3 @@ const employeePrompt = () => {
     })
 }
 
-init();

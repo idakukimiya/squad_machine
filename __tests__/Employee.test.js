@@ -1,18 +1,27 @@
 const Employee = require('../lib/Employee');
 
-test('Creates new employee', () => {
-    const employee = new Employee('John Smith', 1234, 'john@smith.com');
+describe('Employee', () => {
+    it("should return the employee's name, ID, and email", () => {
+        const employeeStr = new Employee('Freddy', 4, 'freddykwak123@gmail.com');
 
-    expect(employee.name).toBe("John Smith");
-    expect(employee.id).toEqual(expect.any(Number));
-    expect(employee.email).toEqual(expect.any(String));
-})
+        expect(employeeStr.name).toEqual('Freddy');
+        expect(employeeStr.ID).toEqual(4);
+        expect(employeeStr.email).toEqual('freddykwak123@gmail.com');
+    });
+    
+    describe('getRole', () => {
+        it('should return a string of Employee', () => {
+            const employeeStr = new Employee().getRole();
 
-test('Checks all methods for Employee class', () => {
-    const employee = new Employee('John Smith', 1234, 'john@smith.com');
+            expect(employeeStr).toEqual('Employee');
+        });
+    });
 
-    expect(employee.getName()).toBe(employee.name);
-    expect(employee.getId()).toBe(employee.id);
-    expect(employee.getEmail()).toBe(employee.email);
-    expect(employee.getRole()).toBe('Employee');
-})
+    describe('getName', () => {
+        it('should return the name of the employee', () => {
+            const employeeStr = new Employee('Josh');
+
+            expect(employeeStr.getName()).toEqual('Josh');
+        });
+    });
+});

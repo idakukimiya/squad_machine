@@ -1,20 +1,28 @@
-const { Manager } = require('../lib/Manager');
+const Manager = require('../lib/Manager');
 
-test('Creates new Manager', () => {
-    const employee = new Manager('John Smith', 1234, 'john@smith.com', 1234567890);
+describe('Manager', () => {
+    it("should return the manager's name, ID, email, and office number", () => {
+        const employeeStr = new Manager('Yoshi', 4, 'Dino_Yoshi@gmail.com', 5);
 
-    expect(employee.name).toBe("John Smith");
-    expect(employee.id).toEqual(expect.any(Number));
-    expect(employee.email).toEqual(expect.any(String));
-    expect(employee.officeNumber).toEqual(expect.any(Number));
-})
+        expect(employeeStr.name).toEqual('Yoshi');
+        expect(employeeStr.ID).toEqual(4);
+        expect(employeeStr.email).toEqual('Dino_Yoshi@gmail.com');
+        expect(employeeStr.officeNumber).toEqual(5);
+    });
+    
+    describe('getRole', () => {
+        it('should return a string of Manager', () => {
+            const employeeStr = new Manager().getRole();
 
-test('Checks all methods for Manager class', () => {
-    const employee = new Manager('John Smith', 1234, 'john@smith.com', 1234567890);
+            expect(employeeStr).toEqual('Manager');
+        });
+    });
 
-    expect(employee.getName()).toBe(employee.name);
-    expect(employee.getId()).toBe(employee.id);
-    expect(employee.getEmail()).toBe(employee.email);
-    expect(employee.getOfficeNumber()).toBe(employee.officeNumber);
-    expect(employee.getRole()).toBe('Manager');
-})
+    describe('getOfficeNumber', () => {
+        it("should return the Manager's office number", () => {
+            const employeeStr = new Manager('Yoshi', 4, 'Dino_Yoshi@gmail.com', 5);
+
+            expect(employeeStr.getOfficeNumber()).toEqual(5);
+        });
+    });
+});

@@ -1,20 +1,28 @@
-const { Intern } = require('../lib/Intern');
+const Intern = require('../lib/Intern');
 
-test('Creates new Intern', () => {
-    const employee = new Intern('John Smith', 1234, 'john@smith.com', 'UT');
+describe('Intern', () => {
+    it("should return the intern's name, ID, email, and school", () => {
+        const employeeStr = new Intern('Rain', 4, 'Rain_Walnut@gmail.com', 'UPenn');
 
-    expect(employee.name).toBe("John Smith");
-    expect(employee.id).toEqual(expect.any(Number));
-    expect(employee.email).toEqual(expect.any(String));
-    expect(employee.school).toEqual(expect.any(String));
-})
+        expect(employeeStr.name).toEqual('Rain');
+        expect(employeeStr.ID).toEqual(4);
+        expect(employeeStr.email).toEqual('Rain_Walnut@gmail.com');
+        expect(employeeStr.school).toEqual('UPenn');
+    });
+    
+    describe('getRole', () => {
+        it('should return a string of Intern', () => {
+            const employeeStr = new Intern().getRole();
 
-test('Checks all methods for Interns class', () => {
-    const employee = new Intern('John Smith', 1234, 'john@smith.com', 'UT');
+            expect(employeeStr).toEqual('Intern');
+        });
+    });
 
-    expect(employee.getName()).toBe(employee.name);
-    expect(employee.getId()).toBe(employee.id);
-    expect(employee.getEmail()).toBe(employee.email);
-    expect(employee.getSchool()).toBe(employee.school);
-    expect(employee.getRole()).toBe('Intern');
-})
+    describe('getSchool', () => {
+        it("should return the intern's school", () => {
+            const employeeStr = new Intern('Rain', 4, 'Rain_Walnut@gmail.com', 'UPenn');
+
+            expect(employeeStr.getSchool()).toEqual('UPenn');
+        });
+    });
+});
