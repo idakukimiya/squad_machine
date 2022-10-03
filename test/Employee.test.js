@@ -1,69 +1,73 @@
-const Letter = require('../lib/Letter');
+const Employee = require('../lib/Employee');
 
-describe('Visibility', () => {
-  it('Characters that are digits or letters should not be visible', () => {
-    expect(new Letter('j').visible).toBe(false);
-  });
+describe('Employee Class Init', () => {
+    it('should create an object with a name, id, and email given valid arguments', () => {
+        const employee = new Employee('Ann',12,'example@email.com');
 
-  it('Correct guess makes character visible', () => {
-    const letter = new Letter('j');
-    const { visible } = letter;
+        expect(employee.name).toEqual('Ann');
+        expect(employee.id).toEqual(12);
+        expect(employee.email).toEqual('example@email.com');
+    })
+    
+    it('should throw an error if provided no arguments',  () => {
+        const badEmp =  () => new Employee();
 
-    // Correct guess
-    letter.guess('j');
+        expect(badEmp).toThrow();
+    })
 
-    // Letter was not originally visible
-    expect(visible).toBe(false);
+    it('should throw an error if provided no name',  () => {
+        const badEmp =  () => new Employee(12,'example@email.com');
 
-    // Letter is now visible
-    expect(letter.visible).toBe(true);
-  });
+        expect(badEmp).toThrow();
+    })
 
-  it('Incorrect guess does not make character visible', () => {
-    const letter = new Letter('j');
-    const { visible } = letter;
+    it('should throw an error if provided no id',  () => {
+        const badEmp =  () => new Employee('Ann','example@email.com');
 
-    // Incorrect guess
-    letter.guess('l');
+        expect(badEmp).toThrow();
+    })
 
-    // Letter was not originally visible
-    expect(visible).toBe(false);
+    it('should throw an error if provided no email',  () => {
+        const badEmp =  () => new Employee('Ann',12);
 
-    // Letter is still not visible
-    expect(letter.visible).toBe(false);
-  });
+        expect(badEmp).toThrow();
+    })
 
-  it('Should return the guessed character when using toString', () => {
-    const letter = new Letter('j');
+    it('should throw an error if provided an email with bad formatting ',  () => {
+        const badEmp =  () => new Employee('Ann',12,'bademail');
 
-    letter.guess('j');
+        expect(badEmp).toThrow();
+    })
+})
 
-    expect(letter.toString()).toBe('j');
-  });
-});
+describe('getName Method', () => {
+    it('should return the name when called',  () => {
+        const employee = new Employee('Ann',12,'example@email.com');
 
-describe('Letter class', () => {
-  it("Characters that aren't digits or letters are instantly visible", () => {
-    expect(new Letter('?').visible).toBe(true);
-  });
+        expect(employee.getName()).toEqual('Ann');
+    })
+})
 
-  it('toString returns _ for letters', () => {
-    expect(new Letter('a').toString()).toBe('_');
-  });
+describe('getId Method', () => {
+    it('should return the id when called',  () => {
+        const employee = new Employee('Ann',12,'example@email.com');
 
-  describe('guess', () => {
-    it('Correct guess returns true', () => {
-      expect(new Letter('j').guess('j')).toBe(true);
-    });
+        expect(employee.getId()).toEqual(12);
+    })
+})
 
-    it('Incorrect guess returns false', () => {
-      expect(new Letter('j').guess('l')).toBe(false);
-    });
-  });
+describe('getEmail Method', () => {
+    it('should return the email when called',  () => {
+        const employee = new Employee('Ann',12,'example@email.com');
 
-  describe('getSolution', () => {
-    it('returns character', () => {
-      expect(new Letter('l').getSolution()).toBe('l');
-    });
-  });
-});
+        expect(employee.getEmail()).toEqual('example@email.com');
+    })
+})
+
+describe('getRole Method', () => {
+    it("should return 'Employee' when called",  () => {
+        const employee = new Employee('Ann',12,'example@email.com');
+
+        expect(employee.getRole()).toEqual('Employee');
+    })
+})

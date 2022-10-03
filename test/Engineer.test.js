@@ -1,39 +1,47 @@
-const Word = require('../lib/Word');
-const Letter = require('../lib/Letter');
+const Employee = require("../lib/Employee");
+const Engineer = require("../lib/Engineer.js");
 
-describe('Word class', () => {
-  it('Creates an array of Letter objects', () => {
-    const word = new Word('hi');
+describe('Engineer Class Init', () => {
+    it('should create an object with a name, id, and email, and github given valid arguments', () => {
+        const engineer = new Engineer('Zen',7,'example@email.net','GenZ');
 
-    expect(word.letters).toEqual(
-      expect.arrayContaining([expect.objectContaining({ char: 'h' })])
-    );
+        expect(engineer.name).toEqual('Zen');
+        expect(engineer.id).toEqual(7);
+        expect(engineer.email).toEqual('example@email.net');
+        expect(engineer.github).toEqual('GenZ');
+    })
 
-    expect(word.letters[0]).toBeInstanceOf(Letter);
-  });
+    it('should create an object that is an instance of Employee', () => {
+        const engineer = new Engineer('Zen',7,'example@email.net','GenZ');
 
-  describe('guessLetter', () => {
-    it('Correct guess returns true', () => {
-      expect(new Word('fish').guessLetter('i')).toBe(true);
-    });
+        expect(engineer).toBeInstanceOf(Employee);
+    })
 
-    it('Incorrect guess returns false', () => {
-      expect(new Word('fish').guessLetter('o')).toBe(false);
-    });
-  });
+    it('should throw an error if provided a github that is not a string',  () => {
+        const engineer = () => new Engineer('Zen',7,'example@email.net',0);
 
-  describe('guessedCorrectly ', () => {
-    it('returns true if all letters are correct', () => {
-      const word = new Word('hi');
-      word.guessLetter('h');
-      word.guessLetter('i');
-      expect(word.guessedCorrectly()).toBe(true);
-    });
-    it('returns false if at least one letter is incorrect', () => {
-      const word = new Word('hi');
-      word.guessLetter('h');
-      word.guessLetter('a');
-      expect(word.guessedCorrectly()).toBe(false);
-    });
-  });
-});
+        expect(engineer).toThrow();
+    })
+
+    it('should throw an error if provided no github',  () => {
+        const engineer = () => new Engineer('Zen',7,'example@email.net');
+
+        expect(engineer).toThrow();
+    })
+})
+
+describe('getRole Method', () => {
+    it("should return 'Engineer' when called",  () => {
+        const engineer = new Engineer('Zen',7,'example@email.net','GenZ');
+
+        expect(engineer.getRole()).toEqual('Engineer');
+    })
+})
+
+describe('getGithub Method', () => {
+    it("should return the value of github when called",  () => {
+        const engineer = new Engineer('Mike',7,'example@email.net','mikez');
+
+        expect(engineer.getGithub()).toEqual('mikez');
+    })
+})
