@@ -55,7 +55,7 @@ const intern = internData => {
 `
 }
 // iterates through answers array, creates cards for each team member, then combines all cards together
-const employeesDiv = employeesArr => {
+const employeesDiv = employees => {
   let employeeHtml = ''
 
   for ( i = 0; i < employeesArr.length; i++ ) {
