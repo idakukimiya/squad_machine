@@ -44,9 +44,9 @@ THEN I exit the application, and the HTML is generated
 
 ## Link to Demo
 
-[DEMO](https://drive.google.com/file/d/18W7GZzI1siSmc4FXL6Hjdy0FPk7xtl8f/view)
+[DEMO](https://drive.google.com/file/d/1y2uT-FOFb-y7rS9BW3l8bVx5w1ioP4Kb/view)
 
-![Gif of Demo](./assets/gif/Squad_machine.gif)
+![Gif of Demo](./dist/Assets/SQM.gif.gif)
 
 ## Questions
 
