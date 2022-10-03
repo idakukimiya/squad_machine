@@ -1,23 +1,22 @@
-* {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
 main {
     display: flex;
     justify-content: center;
+    background-color: rgb(7, 89, 165);
 }
 
 h1 {
     color: white;
-    background-color: rgb(31, 7, 165);
+    background-color: rgb(7, 89, 165);
     padding: 2rem;
     font-size: 4rem;
     text-align: center;
+    font-family: 'Rubik Dirt', cursive;
 }
 
 h2,
 h3 {
     font-size: 2rem;
+    font-family: 'Shadows Into Light', cursive;
 }
 
 ul {
@@ -31,4 +30,6 @@ li {
 
 .card {
     margin: 2rem;
+    background-color: bisque;
+    font-family: 'Shadows Into Light', cursive;
 }

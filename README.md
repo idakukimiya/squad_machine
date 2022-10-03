@@ -2,15 +2,15 @@
 
 ## Table of Contents
 
--[Descripton](#description)
+[Descripton](#description)
 
--[Acceptance Criteria](#acceptance-criteria)
+[Acceptance Criteria](#acceptance-criteria)
 
--[Screenshot](#screenshot)
+[Screenshot](#screenshot)
 
--[Link to Demo](#link-to-demo)
+[Link to Demo](#link-to-demo)
 
--[Questions](#questions)
+[Questions](#questions)
 
 ## Description
 
@@ -40,7 +40,7 @@ THEN I exit the application, and the HTML is generated
 
 ## Screenshot
 
-![screenshot of project](./assets/images/Picture2.png)
+![screenshot of project](./dist/Assets/image/Picture1.png)
 
 ## Link to Demo
 
