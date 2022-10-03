@@ -2,11 +2,11 @@ const Employee = require('../lib/Employee');
 
 describe('Employee', () => {
     it("should return the employee's name, ID, and email", () => {
-        const employeeStr = new Employee('Freddy', 4, 'freddykwak123@gmail.com');
+        const employeeStr = new Employee('Sarah', 4, 'sarahlim78@gmail.com');
 
-        expect(employeeStr.name).toEqual('Freddy');
+        expect(employeeStr.name).toEqual('Sarah');
         expect(employeeStr.ID).toEqual(4);
-        expect(employeeStr.email).toEqual('freddykwak123@gmail.com');
+        expect(employeeStr.email).toEqual('sarahlim78@gmail.com');
     });
     
     describe('getRole', () => {
